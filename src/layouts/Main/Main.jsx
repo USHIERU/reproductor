@@ -2,10 +2,18 @@ import React from 'react';
 
 import Navbar from '../../components/Navbar'
 
-import mainVideo from '../../assets/videos/flor.mp4'
+import florVideo from '../../assets/videos/flor.mp4'
+import arrozVideo from '../../assets/videos/arroz.mp4'
+import playaVideo from '../../assets/videos/playa.mp4'
+import lighthouseVideo from '../../assets/videos/lighthouse.mp4'
+
+import florImage from '../../assets/images/flor.png'
+import arrozImage from '../../assets/images/arroz.png'
+import playaImage from '../../assets/images/playa.png'
+import lighthouseImage from '../../assets/images/lighthouse.png'
 
 export default function Main() {
-    const [video, setVideo] = React.useState(mainVideo);
+    const [video, setVideo] = React.useState(florVideo);
     const [playControl, setPalyControl] = React.useState('play_arrow');
     const [volumeControl, setVolumeControl] = React.useState('volume_up');
     const [currentTimeBar, setcurrentTimeBar] = React.useState(0);
@@ -71,8 +79,8 @@ export default function Main() {
         <Navbar />
         <div className="h-full bg-gradient-to-r from-purple-800 to-purple-500 py-10">
             <div className="flex flex-wrap justify-center">
-                <div className="w-1/2">
-                    <video onPlaying={() => setDuration(timeFormat(videoControl.current.duration))} onTimeUpdate={currentTimeUpdate} ref={videoControl} id='video' className="rounded-lg" src={video} onChange={() => { console.log(videoControl.current.currentTime) }} ></video>
+                <div className="w-1/2 h-64 flex justify-center">
+                    <video onPlaying={() => setDuration(timeFormat(videoControl.current.duration))} onTimeUpdate={currentTimeUpdate} ref={videoControl} id='video' className="rounded-lg h-64" src={video} onChange={() => { console.log(videoControl.current.currentTime) }} ></video>
                 </div>
                 <div className="flex justify-center items-center w-full mt-5">
                     <div className="flex items-center bg-gray-100 p-3 rounded-lg w-1/2">
@@ -93,8 +101,19 @@ export default function Main() {
                     </div>
                 </div>
                 <div className="flex justify-center items-center w-full mt-5">
-                    <div className="flex items-center bg-gray-100 p-3 rounded-lg w-1/2">
-
+                    <div className="flex items-center bg-gray-100 p-3 rounded-lg w-1/2 -mx-2">
+                        <div className="w-1/4 px-2">
+                            <img src={florImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(florVideo)} />
+                        </div>
+                        <div className="w-1/4 px-2">
+                            <img src={arrozImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(arrozVideo)} />
+                        </div>
+                        <div className="w-1/4 px-2">
+                            <img src={lighthouseImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(lighthouseVideo)} />
+                        </div>
+                        <div className="w-1/4 px-2">
+                            <img src={playaImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(playaVideo)} />
+                        </div>
                     </div>
                 </div>
             </div>
