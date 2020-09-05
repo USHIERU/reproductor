@@ -71,16 +71,19 @@ export default function Main() {
         setcurrentTimeBar((videoControl.current.currentTime / videoControl.current.duration * 100));
     }
 
-    const setCurrentTimeVideo = (event) => {
-        videoControl.current.currentTime = event.target.value / 100 * videoControl.current.duration;
+    const setCurrentTimeVideo = (event) => videoControl.current.currentTime = event.target.value / 100 * videoControl.current.duration;
+
+    const changeVideo = (video) => {
+        setVideo(video);
+        setPalyControl('play_arrow');
     }
 
     return <>
         <Navbar />
         <div className="h-full bg-gradient-to-r from-purple-800 to-purple-500 py-10">
             <div className="flex flex-wrap justify-center">
-                <div className="w-1/2 h-64 flex justify-center">
-                    <video onPlaying={() => setDuration(timeFormat(videoControl.current.duration))} onTimeUpdate={currentTimeUpdate} ref={videoControl} id='video' className="rounded-lg h-64" src={video} onChange={() => { console.log(videoControl.current.currentTime) }} ></video>
+                <div className="w-1/2 flex justify-center">
+                    <video onClick={playPauseHandle} onLoadStart={() => setcurrentTimeBar(0)} onPlaying={() => setDuration(timeFormat(videoControl.current.duration))} onTimeUpdate={currentTimeUpdate} ref={videoControl} id='video' className="rounded-lg" src={video} onChange={() => { console.log(videoControl.current.currentTime) }} ></video>
                 </div>
                 <div className="flex justify-center items-center w-full mt-5">
                     <div className="flex items-center bg-gray-100 p-3 rounded-lg w-1/2">
@@ -101,20 +104,22 @@ export default function Main() {
                     </div>
                 </div>
                 <div className="flex justify-center items-center w-full mt-5">
+
                     <div className="flex items-center bg-gray-100 p-3 rounded-lg w-1/2 -mx-2">
                         <div className="w-1/4 px-2">
-                            <img src={florImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(florVideo)} />
+                            <img src={florImage} alt="" className="rounded-lg cursor-pointer" onClick={() => changeVideo(florVideo)} />
                         </div>
                         <div className="w-1/4 px-2">
-                            <img src={arrozImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(arrozVideo)} />
+                            <img src={arrozImage} alt="" className="rounded-lg cursor-pointer" onClick={() => changeVideo(arrozVideo)} />
                         </div>
                         <div className="w-1/4 px-2">
-                            <img src={lighthouseImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(lighthouseVideo)} />
+                            <img src={lighthouseImage} alt="" className="rounded-lg cursor-pointer" onClick={() => changeVideo(lighthouseVideo)} />
                         </div>
                         <div className="w-1/4 px-2">
-                            <img src={playaImage} alt="" className="rounded-lg cursor-pointer" onClick={() => setVideo(playaVideo)} />
+                            <img src={playaImage} alt="" className="rounded-lg cursor-pointer" onClick={() => changeVideo(playaVideo)} />
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
